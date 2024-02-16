@@ -11,8 +11,8 @@ socket.on("disconnect", (motivo) => {
     Motivo: ${motivo}`);
   });
 
-function emitirTextoEditor(texto) {
-    socket.emit("texto_editor", texto);
+function emitirTextoEditor(texto, nomeDocumento) {
+    socket.emit("texto_editor", texto, nomeDocumento);
 };
 
 socket.on("texto_editor_clientes", (texto) => {

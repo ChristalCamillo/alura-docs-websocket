@@ -13,8 +13,7 @@ io.on('connection', (socket) => {
         Motivo: ${motivo}`);
       });
 
-    socket.on("texto_editor", (texto, nomeDocumento) => {
-        // socket.broadcast.emit("texto_editor_clientes", texto);
+    socket.on("texto_editor", ({texto, nomeDocumento}) => {
 
         socket.to(nomeDocumento).emit("texto_editor_clientes", texto);
     });

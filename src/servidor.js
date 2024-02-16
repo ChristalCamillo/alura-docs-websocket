@@ -13,12 +13,9 @@ const caminhoAtual = url.fileURLToPath(import.meta.url);
 const diretorioPublico = path.join(caminhoAtual, "../..", "public");
 app.use(express.static(diretorioPublico));
 
-
-io.on('connection', (socket) => {
-    console.log('a user connected');
-  });
-
   server.listen(3000, () => {
     console.log(
         `Servidor escutando porta ${porta}`);
   });
+
+  export default io;

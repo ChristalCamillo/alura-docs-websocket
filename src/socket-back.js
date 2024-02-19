@@ -10,7 +10,7 @@ const documentos = [
         texto: "texto de node"
     },
     {
-        nome: "Socket.IO",
+        nome: "Socket.io",
         texto: "texto de socket"
     }
 ];
@@ -21,10 +21,13 @@ io.on('connection', (socket) => {
 
     //quando o evento selecionar documento acontecer quero buscar o texto do doc e enviar de volta para o cliente
     socket.on("selecionar_documento", (nomeDocumento) => {
+        socket.join(nomeDocumento);
+
         const documento = encontrarDocumento(nomeDocumento);
 
-
-        socket.join(nomeDocumento);
+        if(documento) {
+            socket.emit("texto_documento", documento.texto);
+        };
     });
 
     socket.on("disconnect", (motivo) => {

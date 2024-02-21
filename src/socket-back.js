@@ -1,4 +1,4 @@
-import { encontrarDocumento } from "./documentosDb.js";
+import { atualizaDocumento, encontrarDocumento } from "./documentosDb.js";
 import io from "./servidor.js";
 
 io.on('connection', (socket) => {
@@ -8,8 +8,6 @@ socket.on("selecionar_documento", async (nomeDocumento, devolverTexto) => {
     socket.join(nomeDocumento);
 
     const documento = await encontrarDocumento(nomeDocumento);
-
-    console.log(documento);
 
     if (documento) {
         devolverTexto(documento.texto);
@@ -23,12 +21,9 @@ socket.on("selecionar_documento", async (nomeDocumento, devolverTexto) => {
 
     socket.on("texto_editor", async ({texto, nomeDocumento}) => {
 
-        const documento = await encontrarDocumentoento(nomeDocumento);
+        const atualizacao = await atualizaDocumento(nomeDocumento, texto);
 
-        console.log(documento);
-
-        if(documento){
-            documento.texto = texto;
+        if(atualizacao.modifiedCount){
             socket.to(nomeDocumento).emit("texto_editor_clientes", texto);
         }
     });

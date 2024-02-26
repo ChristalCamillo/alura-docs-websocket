@@ -1,5 +1,12 @@
 import { documentosColecao } from "./dbConnect.js";
 
+  //o find do mongoDb retorna um cursor, devemos transforma-lo em array
+  function obterDocumentos() {
+    const documentos = documentosColecao.find().toArray();
+  
+    return documentos;
+  };
+
 function encontrarDocumento(nome) {
     const documento = documentosColecao.findOne({
           nome
@@ -27,4 +34,4 @@ function atualizaDocumento(nome, texto) {
   return atualizacao;
 };
 
-  export {encontrarDocumento, atualizaDocumento};
+  export {encontrarDocumento, atualizaDocumento, obterDocumentos };

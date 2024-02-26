@@ -43,4 +43,11 @@ function adicionarDocumento(nome) {
   return resultado;
 };
 
-  export {encontrarDocumento, atualizaDocumento, obterDocumentos, adicionarDocumento };
+function excluirDocumento(nome) {
+const resultado = documentosColecao.deleteOne({
+  nome
+});
+return resultado;
+};
+
+  export {encontrarDocumento, atualizaDocumento, obterDocumentos, adicionarDocumento, excluirDocumento };

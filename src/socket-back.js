@@ -1,4 +1,4 @@
-import { atualizaDocumento, encontrarDocumento, obterDocumentos } from "./documentosDb.js";
+import { adicionarDocumento, atualizaDocumento, encontrarDocumento, obterDocumentos } from "./documentosDb.js";
 import io from "./servidor.js";
 
 io.on('connection', (socket) => {
@@ -16,6 +16,13 @@ socket.on("selecionar_documento", async (nomeDocumento, devolverTexto) => {
     if (documento) {
         devolverTexto(documento.texto);
     }
+});
+
+socket.on("adicionar_documento", async (nome) => {
+    const resultado = await adicionarDocumento(nome);
+    if (resultado.acknowledged) {
+        io.emit("adicionar_documento_interface", nome);
+    };
 });
 
     socket.on("disconnect", (motivo) => {

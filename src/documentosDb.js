@@ -34,4 +34,13 @@ function atualizaDocumento(nome, texto) {
   return atualizacao;
 };
 
-  export {encontrarDocumento, atualizaDocumento, obterDocumentos };
+function adicionarDocumento(nome) {
+  const resultado = documentosColecao.insertOne({
+      nome,
+      texto: ""
+  });
+
+  return resultado;
+};
+
+  export {encontrarDocumento, atualizaDocumento, obterDocumentos, adicionarDocumento };

@@ -25,4 +25,13 @@ botaoExcluir.addEventListener("click", () => {
     emitirExcluirDocumento(nomeDocumento);
   });
 
-export {atualizaTextoEditor};
+function alertarERedirecionar(nome) {
+    if(nome === nomeDocumento){
+        alert(`documento ${nome} excluido`);
+        //redirecionando no front pro index
+        window.location.href = "/";
+    };
+
+};
+
+export {atualizaTextoEditor, alertarERedirecionar};

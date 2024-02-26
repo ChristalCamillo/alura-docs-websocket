@@ -47,6 +47,8 @@ socket.on("adicionar_documento", async (nome) => {
 
     socket.on("excluir_documento", async(nome) => {
         const resoltado = await excluirDocumento(nome);
-        console.log(resoltado);
+        if(resoltado.deletedCount) {
+            io.emit("excluir_documento_sucesso", nome);
+        };
     });
 });

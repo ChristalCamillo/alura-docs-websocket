@@ -21,4 +21,8 @@ socket.on("documento_existente", (nome) => {
     alert(`O documento ${nome} já existe`);
 });
 
+socket.on("excluir_documento_sucesso", (nome) => {
+    removerLinkDocumento(nome);
+  });
+
 export { emitirAdicionarDocumento };
